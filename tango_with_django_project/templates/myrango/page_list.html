@@ -1,0 +1,13 @@
+<div class="nav nav-list">
+    <h2>Top Five Pages</h2>
+    {% if pages %}
+        <ul>
+            {% for page in pages %}
+                <li><a href="/myrango/goto/?page_id={{ page.id }}">{{ page.title }}</a> - {{ page.category }} ({{ page.views }} view(s))</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <strong>No pages at present.</strong>
+    {% endif %}
+
+</div>
