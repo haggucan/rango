@@ -1,24 +1,16 @@
-<!DOCTYPE html>
+{% extends "myrango/base.html" %}
 {% load static %}
 
-<html>
-<body>
-	
-<div style="float:left;">
-	
-	{{ps_message}}
-</div>
+{% block title %}About Oage{% endblock %}
+{% block body_block %}
+    <div class="hero-unit">
+        <h1>About Rango</h1>
+        This is <strong>Rango's about page</strong>.<br />
 
-<div style="clear:both;">
-	<img src="{% static "cloud.jpg"%}">
+        You've visited the site on <strong>{{ count }} occasion(s)</strong>.<br />
+        The time is  : <strong>{{ last_visit }}</strong>
 
-</div>
-
-
-
-</body>
-
-
-
-
-</html>
+        Here's a picture of Rango!<br />
+        <img src="{% static 'rango.jpg' %}" alt="Picture of Rango" />
+    </div>
+{% endblock %}
