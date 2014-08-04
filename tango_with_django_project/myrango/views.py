@@ -1,3 +1,4 @@
+#-*-coding: utf-8-*-
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import RequestContext
 from django.shortcuts import render_to_response
@@ -46,8 +47,7 @@ def category(request, category_name_url):
     context_variables = get_category_and_page_list()
     # category_name = category_name_url.replace("_"," ")
     context_variables['category_name'] = category_name_url
-    categories = get_category_list()
-    context_variables["categories"] = categories
+
     try:
         cat = Category.objects.get(name=category_name_url)
         c = Category.objects
@@ -244,7 +244,7 @@ def track_url(request):
         if 'page_id' in request.GET:
             page_id = request.GET["page_id"]
             try:
-                tracked_page = Page.objects.get(id = page_id)
+                tracked_page = Page.objects.get(id=page_id)
                 tracked_page.views = tracked_page.views + 1
                 url = tracked_page.url
                 tracked_page.save()
@@ -252,6 +252,36 @@ def track_url(request):
                 pass
 
     return HttpResponseRedirect(url)
+
+
+@login_required
+def like_category(request):
+    context = RequestContext(request)
+    like_count = 0
+
+    if request.method == 'GET':
+        if 'category_id' in request.GET:
+            category_id = request.GET["category_id"]
+            try:
+                cat = Category.objects.get(id=int(category_id))
+                cat.likes = cat.likes + 1
+                like_count = cat.likes
+                cat.save()
+            except:
+                pass
+    return HttpResponse(like_count)
+
+
+def suggest_category(request):
+    context = RequestContext(request)
+    categories = []
+    starts_with = ''
+    if request.method == 'GET':
+        starts_with = request.GET['suggestion']
+
+    categories = get_category_list(8, starts_with)
+
+    return render_to_response('myrango/category_list.html', {'categories': categories}, context)
 
 
 def get_search_results(request):
@@ -263,10 +293,52 @@ def get_search_results(request):
     return result_list
 
 
-def get_category_list():
-    categories = Category.objects.order_by("-likes")[:5]
-    for category in categories:
-        category.url = category.name.replace(' ', '_')
+@login_required
+def auto_add_page(request):
+
+    context = RequestContext(request)
+    cat_id = None
+    link = None
+    title = None
+    context_dict = {}
+    print "REQUEST METHODU " , request.method
+    if request.method == 'GET':
+        cat_id = request.GET['cat_id']
+        link = request.GET['link'].encode('utf-8').strip()
+        title = request.GET['title'].encode('utf-8').strip()
+        if cat_id:
+            category = Category.objects.get(id=int(cat_id))
+            p = Page.objects.get_or_create(category=category, title=title, url=link)
+
+            pages = Page.objects.filter(category=category).order_by('-views')
+
+            context_dict['pages'] = pages
+
+    return render_to_response('myrango/page_list.html', context_dict, context)
+
+
+def get_category_list(max_results=0, starts_with=''):
+    if not max_results and not starts_with:
+
+        categories = Category.objects.order_by("-likes")[:5]
+        for category in categories:
+            category.url = decode_url(category.name)
+        return categories
+    else:
+        return get_suggested_category_list(max_results, starts_with)
+
+
+def get_suggested_category_list(max_results, starts_with):
+    if starts_with:
+        categories = Category.objects.filter(name__istartswith=starts_with)
+    else:
+        categories = Category.objects.all()
+
+    if max_results > 0:
+        if len(categories) > max_results:
+            categories = categories[:max_results]
+    for cat in categories:
+        cat.url = decode_url(cat.name)
     return categories
 
 
