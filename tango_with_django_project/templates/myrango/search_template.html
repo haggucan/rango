@@ -6,9 +6,9 @@
         <form class="form-signin span8" id="user_form" method="post" action="/myrango/category/{{ category_name }}">
             {% csrf_token %}
             <!-- Display the search form elements here -->
-            <input type="text" size="50" name="query" value="" id="query" />
-            <input class="btn btn-primary" type="submit" name="submit" value="Search" />
-            <br />
+            <input type="text" size="50" name="query" value="" id="query"/>
+            <input class="btn btn-primary" type="submit" name="submit" value="Search"/>
+            <br/>
         </form>
 
         {% if result_list %}
@@ -17,7 +17,14 @@
                 <ol>
                     {% for result in result_list %}
                         <li>
-                            <strong><a href="{{ result.link }}">{{ result.title }}</a></strong><br />
+                            <strong><a href="{{ result.link }}">{{ result.title }}</a></strong>
+                            {% if user.is_authenticated %}
+                                <button id="{{ result.index }}" data-catid="{{ category.id }}" data-title="{{ result.title }}" data-url="{{ result.link }}"
+                                        class="myrango-add btn btn-mini btn-info" type="button">Add
+                                </button>
+                            {% endif %}
+                            <br/>
+
                             <em>{{ result.summary }}</em>
                         </li>
                     {% endfor %}

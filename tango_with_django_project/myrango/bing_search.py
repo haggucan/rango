@@ -1,4 +1,4 @@
-__author__ = 'hakanyildiz'
+#-*-coding: utf-8-*-
 import json
 import urllib, urllib2
 import sys
@@ -37,11 +37,14 @@ def search_query(search_terms):
         response = urllib2.urlopen(search_url).read()
 
         json_response = json.loads(response)
+        index = 0
         for r in json_response["d"]["results"]:
             results.append({
                 'title': r['Title'],
                 'link': r['Url'],
-                'summary': r['Description']})
+                'summary': r['Description'],
+                'index':index})
+            index = index+1
 
     except urllib2.URLError, e:
         print "ERROR  ", e

@@ -3,6 +3,7 @@
 
 {% block body_block %}
 
+
     <h1>{{ category_name }}</h1>
     {% if category %}
         {% if pages_of_category %}
@@ -13,10 +14,20 @@
 
 
             </ul>
+            <p>
+                <b id="like_count">{{ category.likes }}</b> people like this category
+
+                {% if user.is_authenticated %}
+                    <button id="likes" data-catid="{{ category.id }}" class="btn btn-mini btn-primary" type="button">Like</button>
+                {% endif %}
+
+            </p>
+            <br/>
 
         {% else %}
             <strong>No pages currently in category.</strong>
         {% endif %}
+
         {% if user.is_authenticated %}
             <div>
                 <a href="/myrango/category/{{ category_name }}/add_page">Add a page for this category </a>
@@ -24,6 +35,22 @@
         {% endif %}
     {% else %}
         The specified category {{ category_name }} does not exist!
+    {% endif %}
+    </br>    </br>
+
+    <hr>
+
+    <ul class="nav nav-list">
+        <li class="nav-header">Find an Inline Category</li>
+        <form>
+            <label></label>
+            <li><input class="search-query span10" type="text" name="suggestion" value="" id="suggestion"/></li>
+        </form>
+    </ul>
+    {% if categories %}
+        <div id="cats">
+            {% include 'myrango/category_list.html' with categories=categories %}
+        </div>
     {% endif %}
     <hr>
     {% include "myrango/search_template.html" %}
