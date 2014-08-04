@@ -9,7 +9,7 @@
         {% if pages_of_category %}
             <ul>
                 {% for page in pages_of_category %}
-                    <li><a href="{{ page.url }}">{{ page.title }}</a></li>
+                    <li><a href="/myrango/goto/?page_id={{ page.id }}">{{ page.title }}</a></li>
                 {% endfor %}
 
 
