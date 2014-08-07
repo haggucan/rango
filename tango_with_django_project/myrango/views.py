@@ -287,9 +287,9 @@ def suggest_category(request):
 def get_search_results(request):
     result_list = []
     if request.method == "POST":
-        search_it = request.POST["query"].strip()
+        search_it = request.POST.get("query",False)
         if search_it:
-            result_list = search_query(search_it)
+            result_list = search_query(search_it.strip())
     return result_list
 
 
