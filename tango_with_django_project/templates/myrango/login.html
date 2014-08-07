@@ -25,7 +25,11 @@
                 <button class="btn btn-primary" type="submit">Sign in</button>
             </form>
 
+
         </div>
+
+        <a href="{% url 'socialauth_begin' 'github' %}">Login with GitHub</a>
+
         <!-- /container -->
     </div>
 {% endblock %}
