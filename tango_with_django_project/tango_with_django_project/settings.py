@@ -24,8 +24,8 @@ DATABASES = {
         # The following settings are not used with sqlite3:
         'USER': '',
         'PASSWORD': '',
-        'HOST': '',  # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
-        'PORT': '',  # Set to empty string for default.
+        'HOST': 'haggucan.com',  # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
+        'PORT': '80',  # Set to empty string for default.
     }
 }
 
@@ -103,6 +103,7 @@ TEMPLATE_LOADERS = (
 
 TEMPLATE_CONTEXT_PROCESSORS = (
     "django.contrib.auth.context_processors.auth",
+    "django.core.context_processors.request",
     "django.core.context_processors.debug",
     "django.core.context_processors.i18n",
     "django.core.context_processors.media",
@@ -140,20 +141,19 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # Uncomment the next line to enable the admin:
     'django.contrib.admin',
-    # Uncomment the next line to enable admin documentation:
     'django.contrib.admindocs',
     'social_auth',
+    'django_social_share',
     'myrango',
     'rangotest',
 )
 
-SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'
-
+SESSION_SERIALIZER='django.contrib.sessions.serializers.PickleSerializer'
 
 AUTHENTICATION_BACKENDS = (
     'social_auth.backends.contrib.github.GithubBackend',
+    'social_auth.backends.facebook.FacebookBackend',
     'social_auth.backends.OpenIDBackend',
     'django.contrib.auth.backends.ModelBackend',
 )
@@ -197,26 +197,28 @@ LOGGING = {
     }
 }
 
-SOCIAL_AUTH_CREATE_USERS          = True
+SOCIAL_AUTH_CREATE_USERS = True
 SOCIAL_AUTH_FORCE_RANDOM_USERNAME = False
-SOCIAL_AUTH_DEFAULT_USERNAME      = 'socialauth_user'
-SOCIAL_AUTH_COMPLETE_URL_NAME     = 'socialauth_complete'
-LOGIN_ERROR_URL                   = '/login/error/'
-#SOCIAL_AUTH_USER_MODEL            = 'app.CustomUser'
-SOCIAL_AUTH_ERROR_KEY             = 'socialauth_error'
+SOCIAL_AUTH_DEFAULT_USERNAME = 'socialauth_user'
+SOCIAL_AUTH_COMPLETE_URL_NAME = 'socialauth_complete'
+SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/myrango/profile/'
+SOCIAL_AUTH_SANITIZE_REDIRECTS = False
+# SOCIAL_AUTH_USER_MODEL            = 'app.CustomUser'
+SOCIAL_AUTH_ERROR_KEY = 'socialauth_error'
 
+LOGIN_URL = '/myrango/login/'
+LOGIN_REDIRECT_URL = '/myrango/profile/'
+LOGIN_ERROR_URL = '/rango/test/'
 
-LOGIN_URL = '/login/'
-LOGIN_REDIRECT_URL = '/members/'
-LOGIN_ERROR_URL = '/login-error/'
+# SOCIAL_AUTH_UID_LENGTH = 16
+# SOCIAL_AUTH_ASSOCIATION_HANDLE_LENGTH = 16
+# SOCIAL_AUTH_NONCE_SERVER_URL_LENGTH = 16
+# SOCIAL_AUTH_ASSOCIATION_SERVER_URL_LENGTH = 16
+# SOCIAL_AUTH_ASSOCIATION_HANDLE_LENGTH = 16
+SOCIAL_AUTH_ENABLED_BACKENDS = ('github', 'facebook',)
 
-SOCIAL_AUTH_UID_LENGTH = 16
-SOCIAL_AUTH_ASSOCIATION_HANDLE_LENGTH = 16
-SOCIAL_AUTH_NONCE_SERVER_URL_LENGTH = 16
-SOCIAL_AUTH_ASSOCIATION_SERVER_URL_LENGTH = 16
-SOCIAL_AUTH_ASSOCIATION_HANDLE_LENGTH = 16
-SOCIAL_AUTH_ENABLED_BACKENDS = ('github',)
-
-GITHUB_APP_ID = '89c594658c9c007a7f39'
-GITHUB_API_SECRET = 'd35e5400536e21c847d29d5a9620b2d6bb966513'
+GITHUB_APP_ID = 'f4cfab8e0683f6b32d83'
+GITHUB_API_SECRET = '13e8c6212f72e25fe303935e18dcf483fa24fe23'
+FACEBOOK_APP_ID = '1495426714031372'
+FACEBOOK_API_SECRET = 'b7d959f809828101c4876204cb484a7b'
 
