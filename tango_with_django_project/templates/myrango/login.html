@@ -1,4 +1,6 @@
 {% extends "myrango/base.html" %}
+{% load static %}
+
 
 {% block title %}Rango{% endblock %}
 
@@ -29,7 +31,7 @@
         </div>
 
         <a href="{% url 'socialauth_begin' 'github' %}">Login with GitHub</a>
-
+        <a  href="{% url 'socialauth_begin' 'facebook' %}"> <img src="{% static 'fblogin.jpg' %}"/></a>
         <!-- /container -->
     </div>
 {% endblock %}
