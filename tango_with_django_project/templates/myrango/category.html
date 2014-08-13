@@ -1,8 +1,9 @@
 {% extends "myrango/base.html" %}
+{% load social_share %}
+
 {% block title %}{{ category_name }}{% endblock %}
 
 {% block body_block %}
-
 
     <h1>{{ category_name }}</h1>
     {% if category %}
@@ -38,7 +39,13 @@
     {% endif %}
     </br>    </br>
 
-    <hr>
+    <div class="social-share">
+
+        {% post_to_facebook object_or_url "<img class=fbshare src=/static/facebook-share.gif />" %}
+        {% post_to_twitter "Excellent Category : {{ category_name }}. Check it out dude!" object_or_url "<img class=tweet src=/static/tweet-button.jpg />" %}
+
+    </div>
+    <hr style="clear: left;">
 
     <ul class="nav nav-list">
         <li class="nav-header">Find an Inline Category</li>
