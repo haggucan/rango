@@ -1,15 +1,68 @@
 {% extends "myrango/base.html" %}
 
-{% block title %}About Oage{% endblock %}
+{% block title %}About Page{% endblock %}
 {% block body_block %}
-    <div class="hero-unit">
+<div class="hero-unit" style="float:left;" xmlns="http://www.w3.org/1999/html">
         <h1>About Rango</h1>
         This is <strong>Rango's about page</strong>.<br />
 
         You've visited the site on <strong>{{ count }} occasion(s)</strong>.<br />
-        The time is  : <strong>{{ last_visit }}</strong>
-
+        The time is  : <strong>{{ last_visit }}</strong><br />
+        And the posted file name is : <span id="files"></span><br />
         Here's a picture of Rango!<br />
         <img src="{% static 'rango.jpg' %}" alt="Picture of Rango" />
     </div>
+
+<div class="hero-unit" style="overflow:hidden;">
+
+     {% csrf_token %}
+
+    <div class="content">
+	<div id="drop-files" ondragover="return false">
+		Drop Images Here
+	</div>
+
+	<div id="uploaded-holder">
+		<div id="dropped-files">
+			<div id="upload-button">
+
+				<a href="#" class="upload">Upload!</a>
+				<a href="#" class="delete">delete</a>
+				<span>0 Files</span>
+			</div>
+		</div>
+		<div id="extra-files">
+			<div class="number">
+				0
+			</div>
+			<div id="file-list">
+				<ul></ul>
+			</div>
+		</div>
+	</div>
+
+	<div id="loading">
+		<div id="loading-bar">
+			<div class="loading-color"> </div>
+		</div>
+		<div id="loading-content">Uploading file.jpg</div>
+	</div>
+
+	<div id="file-name-holder">
+		<ul id="uploaded-files">
+			<h1>Uploaded Files</h1>
+		</ul>
+	</div>
+</div>
+
+
+
+
+
+
+
+
+
+</div>
+
 {% endblock %}

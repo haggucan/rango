@@ -1,0 +1,23 @@
+{% extends "myrango/base.html" %}
+{%block title%}
+DROPBOX
+{%endblock%}
+
+{%block body_block %}
+
+
+<div class="hero-unit">
+        <div class="auth-url">
+            Just Click here if you can see that you are logged in =>
+        </div>
+
+        {% if user.is_authenticated%}
+        <div >
+            <button class="auth btn btn-mini btn-info">AUTH</button>
+        </div>
+        <div class="auth_url_result" >
+
+        </div>
+        {% endif%}
+</div>
+{%endblock%}
