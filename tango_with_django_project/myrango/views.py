@@ -301,7 +301,6 @@ def auto_add_page(request):
     link = None
     title = None
     context_dict = {}
-    print "REQUEST METHODU " , request.method
     if request.method == 'GET':
         cat_id = request.GET['cat_id']
         link = request.GET['link'].encode('utf-8').strip()

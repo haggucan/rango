@@ -30,9 +30,21 @@ $(document).ready(function () {
 
         };
         $.get("/myrango/auto_add_page/", mapping, function (data) {
-            $("#"+index).hide()
+            $("#" + index).hide()
 
         });
     });
 
+    $('.auth').click(function () {
+        $.get('/rango/dropbox/auth', function (data) {
+            $('.auth_url_result').html(data);
+            $('.auth').hide();
+
+        });
+
+
+    });
+
 });
+
+
