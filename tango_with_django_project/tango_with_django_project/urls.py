@@ -10,7 +10,7 @@ urlpatterns = patterns('',
     url(r'', include('social_auth.urls')),
     url(r'^myrango/', include('myrango.urls')),
     url(r'^admin/', include(admin.site.urls)),
-    #url(r'^$', include('myrango.urls')),
+    url(r'^$', include('myrango.urls')),
     url(r'^rango/',include('rangotest.urls')),
 )
 

@@ -1,23 +1,43 @@
 {% extends "myrango/base.html" %}
-{%block title%}
-DROPBOX
-{%endblock%}
+{% block title %}
+    DROPBOX
+{% endblock %}
 
-{%block body_block %}
+{% block body_block %}
 
 
-<div class="hero-unit">
-        <div class="auth-url">
-            Just Click here if you can see that you are logged in =>
+    <div class="hero-unit">
+        <div class="general_authentication" > 
+            <div class="auth-url">
+                Just Click here if you can see that you are logged in =>
+            </div>
+
+            {% if user.is_authenticated %}
+            <div>
+                <button class="auth btn btn-mini btn-info">AUTH</button>
+            </div>
+            <div class="auth_url_result">
+            </div>
+            <hr/>
+            <div class="finish_auth">
+                <input class="code" name="code" type="text" style="width: 500px;"
+                               value=" Please enter dropbox code here in order to begin transaction  "> 
+                </input>
+                <button class="send_code btn btn-mini btn-info">Send</button>
+
+            </div>
+            {% endif %}
         </div>
 
-        {% if user.is_authenticated%}
-        <div >
-            <button class="auth btn btn-mini btn-info">AUTH</button>
-        </div>
-        <div class="auth_url_result" >
+        <div class="dropbox_content">
+        
 
         </div>
-        {% endif%}
-</div>
-{%endblock%}
+
+    
+    </div>
+            
+    
+        
+
+{% endblock %}

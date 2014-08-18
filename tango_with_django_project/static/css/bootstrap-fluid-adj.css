@@ -37,42 +37,47 @@ padding: 9px 0;
     padding-right: 5px;
     }
 }
-
-.content {
-	padding: 20px;
+.content{
+	overflow: hidden;
 }
 #drop-files {
-	width: 400px;
-	height: 125px;
+	width: 100px;
+	height: 20px;
 	background: rgba(0,0,0,0.1);
+	font-size: 12px;
 	border-radius: 10px;
-	border: 4px dashed rgba(0,0,0,0.2);
-	padding: 75px 0 0 0;
+	border: 2px dashed rgba(0,0,0,0.2);
+	padding: 1px 0 0 0;
+	line-height: 20px;
 	text-align: center;
-	font-size: 2em;
 	float: left;
 	font-weight: bold;
-	margin: 0 20px 20px 0;
+	margin: 0 1px 1px 0;
 }
 
 #dropped-files {
 	float: left;
 	position: relative;
-	width: 560px;
-	height: 125px;
+	width: 100px;
+	height: 20px;
+}
+
+#uploaded-holder {
+	width: 100px;
+	height: 25px;
+	display: none;
+	float: left;
 }
 
 #upload-button {
-	position: absolute;
-	top: 87px;
+	position: relative;
 	z-index: 9999;
-	width: 210px;
 	display: none;
 }
 
 #dropped-files .image {
-	height: 200px;
-	width: 300px;
+	height: 20px;
+	width: 30px;
 	border: 4px solid #fff;
 	position: absolute;
 	box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
@@ -90,21 +95,18 @@ padding: 9px 0;
 	color: #fff;
 	font-weight: bold;
 	box-shadow: 0 0 1000px 62px rgba(255, 255, 255, 1), inset 0 -35px 40px -10px #0A9FCA;
-	font-size: 20px;
-	padding: 10px 20px;
 	background-color: #4bc1e3;
 	border-radius: 10px;
 }
 
 #upload-button span {
 	display: block;
-	width: 160px;
+	width: 16px;
 	text-align: center;
-	margin: 20px 0 0 0;
+	margin: 2px 0 0 0;
 	background: white;
 	border-radius: 10px;
-	font-size: 1.1em;
-	padding: 4px 0;
+	padding: 1px 0;
 	position: relative;
 	left: -14px;
 }
@@ -125,10 +127,8 @@ padding: 9px 0;
 	position: relative;
 	font-weight: bold;
 	color: #fff;
-	padding: 20px 30px;
-	margin: 60px 0 0 0;
 	cursor: pointer;
-	font-size: 30px;
+	font-size: 3px;
 }
 
 #dropped-files #upload-button .delete {
@@ -136,7 +136,6 @@ padding: 9px 0;
 	border-radius: 100px;
 	background: rgba(0,0,0,0.6);
 	box-shadow: none;
-	font-size: 1em;
 	margin-left: 8px;
 }
 
@@ -151,7 +150,7 @@ padding: 9px 0;
 	top: 18px;
 	left: -40px;
 	display: block;
-	border: 20px solid;
+	border: 2px solid;
 	border-color: transparent rgba(0, 0, 0, 0.6) transparent transparent;
 }
 
@@ -161,12 +160,12 @@ padding: 9px 0;
 	padding: 20px 0;
 	border-radius: 5px;
 	box-shadow: 0 0 15px rgba(0,0,0,0.1);
-	width: 250px;
+	width: 25px;
 	top: 100px;
 	border: 1px solid #dadada;
 	left: -10px;
 	left: -16px;
-	max-height: 220px;
+	max-height: 22px;
 	top: 150px;
 	position: absolute;
 	color: #545454;
@@ -176,8 +175,8 @@ padding: 9px 0;
 	overflow: scroll;
 	padding: 0;
 	border-top: 1px solid #dadada;
-	max-height: 200px;
-	width: 250px;
+	max-height: 20px;
+	width: 25px;
 	list-style: none;
 	border-bottom: 1px solid #dadada !important;
 }
@@ -187,12 +186,7 @@ padding: 9px 0;
 	border-bottom: 0 !important;
 }
 
-#uploaded-holder {
-	width: 700px;
-	height: 250px;
-	display: none;
-	float: left;
-}
+
 
 #extra-files #file-list:after, #extra-files #file-list:before {
 	position: absolute;
@@ -200,7 +194,7 @@ padding: 9px 0;
 	top: -40px;
 	left: 40px;
 	display: block;
-	border: 20px solid;
+	border: 2px solid;
 	border-color: transparent transparent #ffffff transparent;
 }
 
@@ -212,8 +206,7 @@ padding: 9px 0;
 #extra-files #file-list li {
 	border-bottom: 1px solid #eee;
 	font-weight: bold;
-	font-size: 1.5em;
-	padding: 10px;
+	padding: 1px;
 }
 
 #loading {
@@ -224,12 +217,12 @@ padding: 9px 0;
 }
 
 #loading-bar {
-	width: 404px;
-	height: 40px;
+	width: 40px;
+	height: 4px;
 	background: #fff;
 	box-shadow: 0 0 15px rgba(0,0,0,0.1);
 	border-radius: 5px;
-	padding: 2px;
+	padding: 1px;
 }
 
 .loading-color {
@@ -247,7 +240,6 @@ padding: 9px 0;
 #loading-content {
 	position: absolute;
 	top: 15px;
-	font-size: 1.2em;
 	font-weight: bold;
 	text-align: center;
 	width: 405px;
@@ -261,7 +253,6 @@ padding: 9px 0;
 #file-name-holder h1 {
 	text-align: center;
 	border-bottom: 1px solid #dadada;
-	padding: 20px 0;
 	font-size: 3em;
 	margin: 0;
 }
@@ -270,11 +261,11 @@ padding: 9px 0;
 	background: white;
 	border-radius: 5px;
 	box-shadow: 0 0 15px rgba(0,0,0,0.1);
-	width: 407px;
+	width: 40px;
 	top: 100px;
 	padding: 0;
 	border: 1px solid #dadada;
-	max-height: 320px;
+	max-height: 32px;
 	overflow: scroll;
 	color: #545454;
 }
@@ -282,7 +273,6 @@ padding: 9px 0;
 #uploaded-files li {
 	padding: 10px;
 	border-bottom: 1px solid #eee;
-	font-size: 1.5em;
 	font-weight: bold;
 	line-height: 25px;
 	color: #545454;
@@ -295,5 +285,9 @@ padding: 9px 0;
 .auth-url {
     float:left;
     padding:2px
+}
+
+.finish_auth{
+    float: left;
 }
 
